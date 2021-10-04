@@ -1,6 +1,6 @@
 {
   "name": "sift-cli",
-  "version": "1.10.0-rc3",
+  "version": "1.11.0",
   "description": "Manage your SIFT installation",
   "main": "sift-cli.js",
   "bin": {
@@ -9,14 +9,12 @@
   "scripts": {
     "pkg:prep": "jo version=$(bash .ci/version) > config.json",
     "pkg:build": "pkg -t node14-linux --out-dir release package.json && cd release && mv sift-cli sift-cli-linux",
-    "pkg:hash": "cd release && shasum -a 256 sift-cli-linux > sift-cli-linux.sha256",
-    "pkg:sign": "cd release && rm -f sift-cli-linux.sha256.asc && gpg --armor --clearsign --digest-algo SHA256 -u 22598A94 sift-cli-linux.sha256 && rm sift-cli-linux.sha256",
-    "pkg": "npm run pkg:prep && npm run pkg:build && npm run pkg:hash && npm run pkg:sign"
+    "pkg": "npm run pkg:prep && npm run pkg:build"
   },
   "author": "Erik Kristensen <erik@erikkristensen.com>",
   "license": "MIT",
   "dependencies": {
-    "@octokit/rest": "18.5.2",
+    "@octokit/rest": "18.11.4",
     "bluebird": "3.7.2",
     "docopt": "0.6.2",
     "github": "14.0.0",
@@ -29,7 +27,7 @@
     "username": "5.1.0"
   },
   "devDependencies": {
-    "pkg": "4.5.1"
+    "pkg": "5.3.3"
   },
   "pkg": {
     "scripts": [
